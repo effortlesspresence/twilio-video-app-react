@@ -3,10 +3,10 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { TwilioError } from 'twilio-video';
 
 import AppStateProvider, { useAppState } from './index';
-import useFirebaseAuth from './useFirebaseAuth/useFirebaseAuth';
+// import useFirebaseAuth from './useFirebaseAuth/useFirebaseAuth';
 import usePasscodeAuth from './usePasscodeAuth/usePasscodeAuth';
 
-jest.mock('./useFirebaseAuth/useFirebaseAuth', () => jest.fn(() => ({ user: 'firebaseUser' })));
+// jest.mock('./useFirebaseAuth/useFirebaseAuth', () => jest.fn(() => ({ user: 'firebaseUser' })));
 jest.mock('./usePasscodeAuth/usePasscodeAuth', () => jest.fn(() => ({ user: 'passcodeUser' })));
 jest.mock('./useActiveSinkId/useActiveSinkId.ts', () => () => ['default', () => {}]);
 
@@ -53,19 +53,19 @@ describe('the useAppState hook', () => {
     it('should not use any auth hooks', async () => {
       delete process.env.REACT_APP_SET_AUTH;
       renderHook(useAppState, { wrapper });
-      expect(useFirebaseAuth).not.toHaveBeenCalled();
+      // expect(useFirebaseAuth).not.toHaveBeenCalled();
       expect(usePasscodeAuth).not.toHaveBeenCalled();
     });
   });
 
-  describe('with firebase auth enabled', () => {
-    it('should use the useFirebaseAuth hook', async () => {
-      process.env.REACT_APP_SET_AUTH = 'firebase';
-      const { result } = renderHook(useAppState, { wrapper });
-      expect(useFirebaseAuth).toHaveBeenCalled();
-      expect(result.current.user).toBe('firebaseUser');
-    });
-  });
+  // describe('with firebase auth enabled', () => {
+  //   it('should use the useFirebaseAuth hook', async () => {
+  //     process.env.REACT_APP_SET_AUTH = 'firebase';
+  //     const { result } = renderHook(useAppState, { wrapper });
+  //     expect(useFirebaseAuth).toHaveBeenCalled();
+  //     expect(result.current.user).toBe('firebaseUser');
+  //   });
+  // });
 
   describe('with passcode auth enabled', () => {
     it('should use the usePasscodeAuth hook', async () => {
