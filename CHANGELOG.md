@@ -1,6 +1,6 @@
 ## 0.2.3
 
-### Bugfixes
+### Bugfixes 
 
 - Update `VideoInputList` so that the app doesn't crash when the deivce is changed while the camera is off. [#412](https://github.com/twilio/twilio-video-app-react/pull/412)
 
